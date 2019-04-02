@@ -2,12 +2,12 @@ Vue.component('sign-form', {
     template:
     '<form>' +
         '<input type="text" id="is">' +
-        '<button @click="addSign">Добавить</button>' +
+        '<button @click="addSign">Ввести</button>' +
     '</form>',
     methods: {
         addSign: function () {
             const sign = document.getElementById('is').value;
-            alert(sign);
+            alert('lol');
 
             axios.post('/info/add', null, {
                 params: {
