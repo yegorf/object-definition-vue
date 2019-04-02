@@ -4,9 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
@@ -19,6 +18,9 @@ public class Entity {
     private Integer id;
 
     private String entity;
+
+    @OneToMany(mappedBy = "diagnose", cascade = CascadeType.ALL)
+    private Set<Match> match;
 
     public Entity(String entity) {
         this.entity = entity;

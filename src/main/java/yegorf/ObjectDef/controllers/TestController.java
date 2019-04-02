@@ -8,6 +8,7 @@ import yegorf.ObjectDef.entities.Sign;
 import yegorf.ObjectDef.repos.EntityRepo;
 import yegorf.ObjectDef.repos.MatchRepo;
 import yegorf.ObjectDef.repos.SignRepo;
+import yegorf.ObjectDef.tools.Analyzer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,7 +41,8 @@ public class TestController {
                 System.out.println(i);
             }
 
-            int count = check(list);
+            int count = Analyzer.analyzeAnswers(list);
+
             switch (count) {
                 case 0:
                     System.out.println("Нема");
@@ -54,14 +56,4 @@ public class TestController {
             }
     }
 
-    public int check(ArrayList<Integer> list) {
-        HashSet<Entity> entities = entityRepo.findAll();
-        int count = 0;
-
-        for(Entity e : entities) {
-            //HashSet<Match> matches = matchRepo.fi
-        }
-
-        return count;
-    }
 }

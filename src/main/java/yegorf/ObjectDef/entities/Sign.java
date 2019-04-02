@@ -4,10 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
@@ -19,6 +18,9 @@ public class Sign {
     private Integer id;
 
     private String sign;
+
+    @OneToMany(mappedBy = "diagnose", cascade = CascadeType.ALL)
+    private Set<Match> match;
 
     public Sign(String sign) {
         this.sign = sign;
