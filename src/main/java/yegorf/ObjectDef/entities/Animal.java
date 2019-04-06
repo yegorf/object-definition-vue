@@ -9,10 +9,9 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 public class Animal {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

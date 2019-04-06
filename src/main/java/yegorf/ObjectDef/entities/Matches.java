@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 
 @Data
 @EqualsAndHashCode(of="id")
@@ -17,15 +16,15 @@ public class Matches {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sign_id")
     private Sign sign;
 
-    public Matches(Animal animal, Sign sign) {
-        this.animal = animal;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
+
+    public Matches(Sign sign, Animal animal) {
         this.sign = sign;
+        this.animal = animal;
     }
 }

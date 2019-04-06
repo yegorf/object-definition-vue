@@ -18,7 +18,7 @@ public class TestController {
 
     @GetMapping
     public HashSet<Sign> kek() {
-        HashSet<Sign> signs = signRepo.findAll();
+        HashSet<Sign> signs = null;// = signRepo.findAll();
         return signs;
     }
 
@@ -34,6 +34,6 @@ public class TestController {
                 System.out.println(i);
             }
             Analyzer analyzer = new Analyzer();
-            analyzer.analyzeResult(list);
+            //analyzer.analyzeResult(list);
     }
 }

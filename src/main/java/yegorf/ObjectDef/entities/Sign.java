@@ -5,13 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 public class Sign {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +24,6 @@ public class Sign {
     public Sign(String sign) {
         this.sign = sign;
     }
+
+
 }
