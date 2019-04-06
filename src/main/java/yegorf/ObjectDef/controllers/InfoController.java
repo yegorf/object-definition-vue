@@ -17,6 +17,10 @@ public class InfoController {
     @GetMapping
     public HashSet<Sign> kek() {
         HashSet<Sign> signs = signRepo.findAll();
+
+        for(Sign s : signs) {
+            System.out.println(s.getSign());
+        }
         return signs;
     }
 

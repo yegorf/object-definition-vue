@@ -9,20 +9,20 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
-@javax.persistence.Entity
 @NoArgsConstructor
-public class Entity {
+@Entity
+public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String entity;
+    private String animal;
 
-    @OneToMany(mappedBy = "diagnose", cascade = CascadeType.ALL)
-    private Set<Match> match;
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
+    private Set<Matches> matches;
 
-    public Entity(String entity) {
-        this.entity = entity;
+    public Animal(String animal) {
+        this.animal = animal;
     }
 }

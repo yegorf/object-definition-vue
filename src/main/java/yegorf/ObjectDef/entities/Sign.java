@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
-@Entity
 @NoArgsConstructor
+@Entity
 public class Sign {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,8 +19,8 @@ public class Sign {
 
     private String sign;
 
-    @OneToMany(mappedBy = "diagnose", cascade = CascadeType.ALL)
-    private Set<Match> match;
+    @OneToMany(mappedBy = "sign", cascade = CascadeType.ALL)
+    private Set<Matches> matches;
 
     public Sign(String sign) {
         this.sign = sign;
