@@ -3,6 +3,7 @@ package yegorf.ObjectDef.entities;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 @EqualsAndHashCode(of="id")
 @Entity
 @NoArgsConstructor
+@ToString
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,5 +25,10 @@ public class Animal {
 
     public Animal(String animal) {
         this.animal = animal;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
     }
 }

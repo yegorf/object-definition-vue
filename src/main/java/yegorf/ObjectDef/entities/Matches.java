@@ -3,6 +3,7 @@ package yegorf.ObjectDef.entities;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(of="id")
 @NoArgsConstructor
 @Entity
+@ToString
 public class Matches {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,5 +28,10 @@ public class Matches {
     public Matches(Sign sign, Animal animal) {
         this.sign = sign;
         this.animal = animal;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
     }
 }

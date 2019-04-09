@@ -1,16 +1,20 @@
 package yegorf.ObjectDef.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of="id")
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties("matches")
 public class Sign {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,5 +29,8 @@ public class Sign {
         this.sign = sign;
     }
 
-
+    @Override
+    public String toString() {
+        return id + " ";
+    }
 }

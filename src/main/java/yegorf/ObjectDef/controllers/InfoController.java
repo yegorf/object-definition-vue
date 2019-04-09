@@ -20,18 +20,13 @@ public class InfoController {
 
 
     @GetMapping
-    public HashSet<Sign> kek() {
-        HashSet<Sign> signss = null;// signRepo.findAll();
+    public ArrayList<Sign> kek() {
         ArrayList<Sign> signs = (ArrayList<Sign>) signRepo.findAll();
-        ArrayList<Animal> animals = (ArrayList<Animal>) animalRepo.findAll();
-        for(Animal a : animals) {
-            System.out.println(a.getAnimal());
-        }
 
         for(Sign s : signs) {
-            System.out.println(s.getSign());
+            System.out.println(s.getId() + " " + s.getSign());
         }
-        return signss;
+        return signs;
     }
 
     @PostMapping("/add")
