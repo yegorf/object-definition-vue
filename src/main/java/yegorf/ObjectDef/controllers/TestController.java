@@ -2,7 +2,10 @@ package yegorf.ObjectDef.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import yegorf.ObjectDef.entities.Animal;
 import yegorf.ObjectDef.entities.Sign;
+import yegorf.ObjectDef.repos.AnimalRepo;
+import yegorf.ObjectDef.repos.MatchesRepo;
 import yegorf.ObjectDef.repos.SignRepo;
 import yegorf.ObjectDef.tools.Analyzer;
 
@@ -14,11 +17,14 @@ import java.util.HashSet;
 public class TestController {
     @Autowired
     private SignRepo signRepo;
-
+    @Autowired
+    private AnimalRepo animalRepo;
+    @Autowired
+    private MatchesRepo matchesRepo;
 
     @GetMapping
     public HashSet<Sign> kek() {
-        HashSet<Sign> signs = null;// = signRepo.findAll();
+        HashSet<Sign> signs = signRepo.findAll();
         return signs;
     }
 
@@ -33,7 +39,7 @@ public class TestController {
             for(Integer i : list) {
                 System.out.println(i);
             }
-            Analyzer analyzer = new Analyzer();
-            //analyzer.analyzeResult(list);
+            Analyzer analyzer = new Analyzer(signRepo, animalRepo, matchesRepo);
+            analyzer.analyzeResult(list);
     }
 }

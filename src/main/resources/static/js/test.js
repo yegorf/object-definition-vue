@@ -16,21 +16,30 @@ Vue.component('test-form', {
     '</div>',
     methods: {
         go: function () {
-           // var sign = [];
-            var sign = '';
+            let sign = '';
+            let count = 0;
 
             this.signs.forEach(function (s) {
-                var el = document.getElementById(s.id);
+                const el = document.getElementById(s.id);
                 if(el.checked) {
-              //      sign.push(s.id);
                     sign = sign + s.id + ' ';
+                    count++;
                 }
             });
-            axios.post('/test/find', null, {
-                params: {
-                    sign
-                }
-            });
+
+            if(count === 0) {
+                alert('0');
+                window.open('add.html', '_self');
+
+            } else if(count === 1) {
+                alert('1');
+            } else if(count === 2) {
+                axios.post('/test/find', null, {
+                    params: {
+                        sign
+                    }
+                });
+            }
         }
     }
 });

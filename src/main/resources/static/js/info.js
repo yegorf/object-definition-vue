@@ -1,17 +1,29 @@
 Vue.component('sign-form', {
     template:
     '<form>' +
+    '<b>Добавление</b>' +
     '<input type="text" id="is">' +
     '<button @click="addSign">Ввести</button>' +
+    '<br>' +
+    '<b>Удаление</b>' +
+    '<input type="text" id="de">' +
+    '<button @click="deleteSign">Удалить</button>' +
     '</form>',
     methods: {
         addSign: function () {
             const sign = document.getElementById('is').value;
-            alert('lol');
-
             axios.post('/info/add', null, {
                 params: {
                     sign
+                }
+            });
+        },
+
+        deleteSign: function () {
+            const id = document.getElementById('de').value;
+            axios.post('/info/delete', null, {
+                params: {
+                    id
                 }
             });
         }

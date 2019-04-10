@@ -27,7 +27,7 @@ Vue.component("add-form", {
 });
 
 var add = new Vue({
-    el: '#add',
+    el: '#addInfo',
     template:
         '<add-form />',
     data: {
@@ -35,6 +35,6 @@ var add = new Vue({
     },
 
     async created() {
-
+        alert('hi');
     }
 });

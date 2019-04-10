@@ -15,13 +15,10 @@ import java.util.HashSet;
 public class InfoController {
     @Autowired
     private SignRepo signRepo;
-    @Autowired
-    private AnimalRepo animalRepo;
-
 
     @GetMapping
-    public ArrayList<Sign> kek() {
-        ArrayList<Sign> signs = (ArrayList<Sign>) signRepo.findAll();
+    public HashSet<Sign> kek() {
+        HashSet<Sign> signs = signRepo.findAll();
 
         for(Sign s : signs) {
             System.out.println(s.getId() + " " + s.getSign());
@@ -31,7 +28,11 @@ public class InfoController {
 
     @PostMapping("/add")
     public void lol(@RequestParam String sign) {
-        System.out.println(sign);
         signRepo.save(new Sign(sign));
+    }
+
+    @PostMapping("/delete")
+    public void delete(@RequestParam Integer id) {
+        signRepo.deleteById(id);
     }
 }
