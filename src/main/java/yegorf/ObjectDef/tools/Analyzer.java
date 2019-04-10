@@ -28,7 +28,7 @@ public class Analyzer {
         this.matchesRepo = matchesRepo;
     }
 
-    private String analyzeAnswers(ArrayList<Integer> list) {
+    public String analyzeAnswers(ArrayList<Integer> list) {
         HashSet<Animal> animals = animalRepo.findAll();
         int count = 0;
         int maxCount = 0;
@@ -37,7 +37,7 @@ public class Analyzer {
             HashSet<Matches> matches = matchesRepo.findAllByAnimal(e);
             for(Matches m : matches) {
                 for(Integer i : list) {
-                    if(m.getSign().getId() == i) {
+                    if(m.getSign().getId().equals(i)) {
                         count ++;
                         if(maxCount < count) {
                             maxCount = count;
@@ -49,18 +49,19 @@ public class Analyzer {
                 return e.getAnimal();
             }
         }
-        return null;
+        return "no";
     }
 
-    public void analyzeResult(ArrayList<Integer> list) {
-        String result = analyzeAnswers(list);
-
-        if(result != null) {
-            //Если результат есть, выводим
-        } else {
-            //Если нет, просим ввести название зверя
-        }
-    }
+//    public String analyzeResult(ArrayList<Integer> list) {
+////        String result = analyzeAnswers(list);
+////
+////        if(result != null) {
+////            //Если результат есть, выводим
+////        } else {
+////            //Если нет, просим ввести название зверя
+////        }
+//        return analyzeAnswers(list);
+//    }
 
     public void addTwo(String sign1, String sign2, String entity) {
         Sign signOne = new Sign(sign1);

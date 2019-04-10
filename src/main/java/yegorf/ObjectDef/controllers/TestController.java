@@ -29,7 +29,7 @@ public class TestController {
     }
 
     @PostMapping("/find")
-    public void find(@RequestParam String sign) {
+    public String find(@RequestParam String sign) {
             String[] strings = sign.split(" ");
             ArrayList<Integer> list = new ArrayList<>();
 
@@ -40,6 +40,6 @@ public class TestController {
                 System.out.println(i);
             }
             Analyzer analyzer = new Analyzer(signRepo, animalRepo, matchesRepo);
-            analyzer.analyzeResult(list);
+            return analyzer.analyzeAnswers(list);
     }
 }

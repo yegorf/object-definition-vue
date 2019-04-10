@@ -28,17 +28,28 @@ Vue.component('test-form', {
             });
 
             if(count === 0) {
+                //Вводим 2 признака и зверя
                 alert('0');
                 window.open('add.html', '_self');
-
             } else if(count === 1) {
+                //Вводим 1 признак и зверя
                 alert('1');
+                window.open('add.html', '_self');
             } else if(count === 2) {
                 axios.post('/test/find', null, {
                     params: {
                         sign
                     }
-                });
+                }).then((res => {
+                    const animal = res.data;
+                    if(animal !== 'no') {
+                        //Вводим только название животного
+                        alert("Животного с такими признаками нет. Добавить?")
+                    } else {
+                        //Выводим результат
+                        alert(animal);
+                    }
+                }));
             }
         }
     }

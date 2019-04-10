@@ -1,9 +1,15 @@
 Vue.component("add-form", {
     template:
     '<form>' +
+        '<b>Первый признак</b>' +
         '<input type="text" id="sign1">' +
+        '<br>' +
+        '<b>Второй признак</b>' +
         '<input type="text" id="sign2">' +
+        '<br>' +
+        '<b>Животное</b>' +
         '<input type="text" id="entity">' +
+        '<br>' +
         '<button @click="addInfo">Добавить</button>' +
     '</form>',
 
