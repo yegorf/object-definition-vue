@@ -25,6 +25,9 @@ public class ResultController {
                        @RequestParam String sign2,
                        @RequestParam String entity) {
         (new Analyzer(signRepo, animalRepo, matchesRepo)).addTwo(sign1, sign2, entity);
+        System.out.println(sign1);
+        System.out.println(sign2);
+        System.out.println(entity);
     }
 
     @PostMapping("/addOne")

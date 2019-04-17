@@ -46,10 +46,10 @@ Vue.component('test-form', {
                     const animal = res.data;
                     if(animal !== 'no') {
                         //Вводим только название животного
-                        alert("Животного с такими признаками нет. Добавить?")
+                        alert(animal)
                     } else {
                         //Выводим результат
-                        alert(animal);
+                        alert("Такого зверя нет. Добавить?");
                     }
                 }));
             }
@@ -62,22 +62,26 @@ Vue.component("add-form", {
     template:
     '<form>' +
     '<b>Первый признак</b>' +
-    '<input type="text" id="sign1">' +
+    '<input type="text" id="s1">' +
     '<br>' +
     '<b>Второй признак</b>' +
-    '<input type="text" id="sign2">' +
+    '<input type="text" id="s2">' +
     '<br>' +
     '<b>Животное</b>' +
-    '<input type="text" id="entity">' +
+    '<input type="text" id="en">' +
     '<br>' +
     '<button @click="addInfo">Добавить</button>' +
     '</form>',
 
     methods: {
         addInfo: function () {
-            const sign1 = document.getElementById("sign1");
-            const sign2 = document.getElementById("sign2");
-            const entity = document.getElementById("entity");
+            const s1 = document.getElementById("s1");
+            const s2 = document.getElementById("s2");
+            const en = document.getElementById("en");
+
+            const sign1 = s1.value;
+            const sign2 = s2.value;
+            const entity = en.value;
 
             axios.post('/result/addTwo', null, {
                 params: {

@@ -30,23 +30,23 @@ public class Analyzer {
 
     public String analyzeAnswers(ArrayList<Integer> list) {
         HashSet<Animal> animals = animalRepo.findAll();
-        int count = 0;
-        int maxCount = 0;
 
-        for(Animal e : animals) {
-            HashSet<Matches> matches = matchesRepo.findAllByAnimal(e);
+        for (Integer i: list){
+            System.out.println(i);
+        }
+
+        for(Animal animal : animals) {
+            HashSet<Matches> matches = matchesRepo.findAllByAnimal(animal);
+            int count = 0;
             for(Matches m : matches) {
                 for(Integer i : list) {
-                    if(m.getSign().getId().equals(i)) {
-                        count ++;
-                        if(maxCount < count) {
-                            maxCount = count;
-                        }
+                    if(i.equals(m.getSign().getId())) {
+                        count++;
                     }
                 }
             }
-            if (count == 2) {
-                return e.getAnimal();
+            if(count >=2) {
+                return animal.getAnimal();
             }
         }
         return "no";
