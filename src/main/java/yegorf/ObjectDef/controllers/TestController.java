@@ -24,8 +24,7 @@ public class TestController {
 
     @GetMapping
     public HashSet<Sign> kek() {
-        HashSet<Sign> signs = signRepo.findAll();
-        return signs;
+        return signRepo.findAll();
     }
 
     @PostMapping("/find")

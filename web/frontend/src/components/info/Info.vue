@@ -12,27 +12,23 @@
 </template>
 
 <script>
+    import AnimalsForm from './AnimalsForm.vue';
+
     export default {
         name: "Info",
+        components: {AnimalsForm},
         data: function () {
             return {
                 componentName: null
             }
         },
         methods: {
-            // add() {
-            //     this.componentName = 'add-form'
-            // },
-            // remove() {
-            //     this.componentName = null
-            // }
-
             showSigns() {
-                this.componentName = '';
+                this.componentName = null;
             },
 
             showAnimals() {
-                this.componentName = '';
+                this.componentName = 'AnimalsForm';
             }
         }
     }

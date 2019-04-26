@@ -13,17 +13,23 @@ import java.util.HashSet;
 @RestController
 @RequestMapping("/info")
 public class InfoController {
+    private final SignRepo signRepo;
+    private final AnimalRepo animalRepo;
+
     @Autowired
-    private SignRepo signRepo;
+    public InfoController(SignRepo signRepo, AnimalRepo animalRepo) {
+        this.signRepo = signRepo;
+        this.animalRepo = animalRepo;
+    }
 
     @GetMapping
     public HashSet<Sign> kek() {
-        HashSet<Sign> signs = signRepo.findAll();
+        return signRepo.findAll();
+    }
 
-        for(Sign s : signs) {
-            System.out.println(s.getId() + " " + s.getSign());
-        }
-        return signs;
+    @GetMapping("/animals")
+    public HashSet<Animal> getAnimals() {
+        return animalRepo.findAll();
     }
 
     @PostMapping("/add")

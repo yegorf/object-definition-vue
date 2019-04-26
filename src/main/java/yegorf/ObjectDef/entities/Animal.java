@@ -29,6 +29,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return String.valueOf(id);
+        return id + " ";
     }
 }
