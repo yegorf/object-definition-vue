@@ -74,4 +74,32 @@ public class Analyzer {
         matchesRepo.save(new Matches(signOne, animal));
         matchesRepo.save(new Matches(signTwo, animal));
     }
+
+    //For animal adding
+    public boolean checkAnimalName(String name) {
+        for(Animal animal : animalRepo.findAll()) {
+            if(animal.getAnimal().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkUnique(Integer id1, Integer id2) {
+        HashSet<Animal> animals = animalRepo.findAll();
+        for(Animal a : animals) {
+            int count = 0;
+            HashSet<Matches> matches = matchesRepo.findAllByAnimal(a);
+            for(Matches m : matches) {
+                if(m.getSign().getId().equals(id1)
+                || m.getSign().getId().equals(id2)) {
+                    count ++;
+                }
+            }
+            if(count == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -54,7 +54,7 @@ body {
 #left {
   width: 50%;
   float: left;
-  background-color: beige;
+  background-color: lightgreen;
   min-height: 300px;
 }
 

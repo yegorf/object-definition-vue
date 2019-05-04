@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import yegorf.ObjectDef.entities.Animal;
 import yegorf.ObjectDef.entities.Sign;
 import yegorf.ObjectDef.repos.AnimalRepo;
+import yegorf.ObjectDef.repos.MatchesRepo;
 import yegorf.ObjectDef.repos.SignRepo;
+import yegorf.ObjectDef.tools.Analyzer;
+import yegorf.ObjectDef.tools.DbHandler;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 @RestController
@@ -15,11 +17,13 @@ import java.util.HashSet;
 public class InfoController {
     private final SignRepo signRepo;
     private final AnimalRepo animalRepo;
+    private final MatchesRepo matchesRepo;
 
     @Autowired
-    public InfoController(SignRepo signRepo, AnimalRepo animalRepo) {
+    public InfoController(SignRepo signRepo, AnimalRepo animalRepo, MatchesRepo matchesRepo) {
         this.signRepo = signRepo;
         this.animalRepo = animalRepo;
+        this.matchesRepo = matchesRepo;
     }
 
     //Animals
@@ -28,11 +32,33 @@ public class InfoController {
         return animalRepo.findAll();
     }
 
-    @PostMapping
-    public void addAnimal(@RequestParam String animal,
-                          @RequestParam Integer id1,
-                          @RequestParam Integer id2) {
+    @PostMapping("/addAnimal")
+    public String addAnimal(
+            @RequestParam String animal,
+            @RequestParam Integer id1,
+            @RequestParam Integer id2
+    ) {
         //Проверить нет ли совпадений, если нет - добавить
+        System.out.println(animal + " " + id1 + " " + id2);
+        Analyzer analyzer = new Analyzer(signRepo, animalRepo, matchesRepo);
+
+        String result = "Adding successful";
+        boolean success = true;
+        if(analyzer.checkAnimalName(animal)) {
+            result = "Animal name already exists!";
+            success = false;
+        } else if(analyzer.checkUnique(id1, id2)) {
+            result = "Animal with same signs already exists!";
+            success = false;
+        }
+
+        if(success) {
+            DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+            handler.addAnimal(animal, id1, id2);
+        }
+
+        System.out.println(result);
+        return result;
     }
 
     @PostMapping("/deleteAnimal")
