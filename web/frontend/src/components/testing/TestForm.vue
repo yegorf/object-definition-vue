@@ -79,6 +79,5 @@
 <style>
     #test-form {
         background-color: aquamarine;
-        width: 50%;
     }
 </style>

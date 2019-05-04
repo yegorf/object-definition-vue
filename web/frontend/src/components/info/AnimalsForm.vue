@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div id="right" align="left">
+        <div id="right">
             <b>Animals</b>
             <br>
             <AnimalRow v-for="animal in animals" :id="animal.id" :animal="animal.animal"/>
         </div>
 
-        <div id="left" align="left">
+        <div id="left">
             <b>Adding</b>
             <br>
             <input type="text">

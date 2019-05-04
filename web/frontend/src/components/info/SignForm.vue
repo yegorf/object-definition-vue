@@ -1,5 +1,5 @@
 <template>
-    <div align="left">
+    <div id="signs">
         <b>Adding</b>
         <br>
         <input type="text" id="box">
@@ -48,5 +48,7 @@
 </script>
 
 <style scoped>
-
+#signs {
+    background: beige;
+}
 </style>

@@ -14,7 +14,6 @@
 
 <style scoped>
     #test-row {
-        background-color: aliceblue;
-        width: 100%;
+
     }
 </style>

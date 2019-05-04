@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <h2>Object definition</h2>
-    <div id="left" align="left">
+    <h1>Animal definition</h1>
+
+    <div id="left">
       <h2>Definition</h2>
       <TestForm :signs="signs" />
     </div>
-    <div id="right" align="right">
+    <div id="right">
       <h2>Data</h2>
       <Info/>
     </div>
@@ -37,12 +38,30 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: honeydew;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: honeydew;
+
+}
+
+#left {
+  width: 50%;
+  float: left;
+  background-color: beige;
+  min-height: 300px;
+}
+
+#right {
+  width: 50%;
+  float: left;
+  background-color: lightskyblue;
+  min-height: 300px;
 }
 </style>

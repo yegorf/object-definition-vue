@@ -22,28 +22,37 @@ public class InfoController {
         this.animalRepo = animalRepo;
     }
 
-    @GetMapping
-    public HashSet<Sign> kek() {
-        return signRepo.findAll();
-    }
-
-    @GetMapping("/signs")
-    public HashSet<Sign> signs() {
-        return signRepo.findAll();
-    }
-
+    //Animals
     @GetMapping("/animals")
     public HashSet<Animal> animals() {
         return animalRepo.findAll();
     }
 
+    @PostMapping
+    public void addAnimal(@RequestParam String animal,
+                          @RequestParam Integer id1,
+                          @RequestParam Integer id2) {
+        //Проверить нет ли совпадений, если нет - добавить
+    }
+
+    @PostMapping("/deleteAnimal")
+    public void deleteAnimal(@RequestParam Integer id) {
+        animalRepo.deleteById(id);
+    }
+
+    //Signs
+    @GetMapping("/signs")
+    public HashSet<Sign> signs() {
+        return signRepo.findAll();
+    }
+
     @PostMapping("/addSign")
-    public void lol(@RequestParam String sign) {
+    public void addSign(@RequestParam String sign) {
         signRepo.save(new Sign(sign));
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestParam Integer id) {
+    @PostMapping("/deleteSign")
+    public void deleteSign(@RequestParam Integer id) {
         signRepo.deleteById(id);
     }
 }

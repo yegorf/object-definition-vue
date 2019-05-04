@@ -26,16 +26,6 @@
                 const sign1 = s1.value;
                 const sign2 = s2.value;
                 const entity = en.value;
-
-                // const path = '/result/addTwo';
-                //
-                // axios.post(path, null, {
-                //     params: {
-                //         sign1,
-                //         sign2,
-                //         entity
-                //     }
-                // });
             }
         }
     }

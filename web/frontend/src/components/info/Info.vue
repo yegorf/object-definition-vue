@@ -37,6 +37,6 @@
 
 <style scoped>
     #info-menu {
-        background-color: antiquewhite;
+        background-color: cadetblue;
     }
 </style>
