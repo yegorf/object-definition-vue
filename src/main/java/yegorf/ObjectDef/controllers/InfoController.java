@@ -27,12 +27,17 @@ public class InfoController {
         return signRepo.findAll();
     }
 
+    @GetMapping("/signs")
+    public HashSet<Sign> signs() {
+        return signRepo.findAll();
+    }
+
     @GetMapping("/animals")
-    public HashSet<Animal> getAnimals() {
+    public HashSet<Animal> animals() {
         return animalRepo.findAll();
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addSign")
     public void lol(@RequestParam String sign) {
         signRepo.save(new Sign(sign));
     }

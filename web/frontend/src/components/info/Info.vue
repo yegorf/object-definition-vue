@@ -13,10 +13,11 @@
 
 <script>
     import AnimalsForm from './AnimalsForm.vue';
+    import SignForm from './SignForm.vue';
 
     export default {
         name: "Info",
-        components: {AnimalsForm},
+        components: {AnimalsForm, SignForm},
         data: function () {
             return {
                 componentName: null
@@ -24,7 +25,7 @@
         },
         methods: {
             showSigns() {
-                this.componentName = null;
+                this.componentName = 'SignForm';
             },
 
             showAnimals() {

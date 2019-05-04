@@ -1,5 +1,6 @@
 package yegorf.ObjectDef.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.Set;
 @EqualsAndHashCode(of="id")
 @Entity
 @NoArgsConstructor
-@ToString
+@JsonIgnoreProperties("matches")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
