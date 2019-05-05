@@ -62,8 +62,13 @@ public class InfoController {
     }
 
     @PostMapping("/deleteAnimal")
-    public void deleteAnimal(@RequestParam Integer id) {
-        animalRepo.deleteById(id);
+    public void deleteAnimal(@RequestParam String animal) {
+        DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+        for(Animal a : animalRepo.findAll()) {
+            if(a.getAnimal().equals(animal)) {
+                handler.deleteAnimal(a);
+            }
+        }
     }
 
     //Signs
@@ -78,7 +83,12 @@ public class InfoController {
     }
 
     @PostMapping("/deleteSign")
-    public void deleteSign(@RequestParam Integer id) {
-        signRepo.deleteById(id);
+    public void deleteSign(@RequestParam String sign) {
+        DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+        for(Sign s : signRepo.findAll()) {
+            if(s.getSign().equals(sign)) {
+                handler.deleteSign(s);
+            }
+        }
     }
 }

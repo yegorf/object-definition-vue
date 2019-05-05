@@ -3,6 +3,9 @@
         <div id="right">
             <b>Animals</b>
             <br>
+            <input type="text" id="dAnimal">
+            <button @click="del">Delete</button>
+            <br>
             <AnimalRow v-for="animal in animals" :id="animal.id" :animal="animal.animal"/>
         </div>
 
@@ -42,10 +45,20 @@
         },
 
         methods: {
+            del: function() {
+                const box = document.getElementById('dAnimal');
+                const animal = box.value;
+
+                axios.post('/info/deleteAnimal', null, {
+                    params: {
+                        animal
+                    }
+                });
+            },
+
             enter: function() {
                 const box = document.getElementById('box');
                 const animal = box.value;
-                //alert(animal);
 
                 let count = 0;
                 let id1;
@@ -64,7 +77,6 @@
                 });
                 if(count === 2) {
                     console.log("Good. id1= " + id1 + " id2= " + id2);
-                    //передать все на серв
                     axios.post('/info/addAnimal', null, {
                         params: {
                             animal,

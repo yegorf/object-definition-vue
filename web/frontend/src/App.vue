@@ -17,6 +17,7 @@
 import TestForm from './components/testing/TestForm.vue';
 import axios from 'axios';
 import Info from './components/info/Info.vue';
+import ModalForm from './components/testing/ModalForm.vue'
 
 export default {
   name: 'app',
@@ -26,7 +27,7 @@ export default {
       }
   },
   components: {
-        TestForm, Info
+        TestForm, Info, ModalForm
   },
     async created() {
         let kek = await axios.get('/test');

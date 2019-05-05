@@ -9,7 +9,8 @@ import yegorf.ObjectDef.repos.AnimalRepo;
 import yegorf.ObjectDef.repos.MatchesRepo;
 import yegorf.ObjectDef.repos.SignRepo;
 
-import java.util.Optional;
+import java.util.HashSet;
+
 
 @Service
 public class DbHandler {
@@ -35,5 +36,21 @@ public class DbHandler {
                 matchesRepo.save(new Matches(s, animal));
             }
         }
+    }
+
+    public void deleteAnimal(Animal animal) {
+        HashSet<Matches> matches = matchesRepo.findAllByAnimal(animal);
+        for(Matches m : matches) {
+            matchesRepo.delete(m);
+        }
+        animalRepo.delete(animal);
+    }
+
+    public void deleteSign(Sign sign) {
+        HashSet<Matches> matches = matchesRepo.findAllBySign(sign);
+        for(Matches m : matches) {
+            matchesRepo.delete(m);
+        }
+        signRepo.delete(sign);
     }
 }

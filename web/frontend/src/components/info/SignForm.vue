@@ -1,9 +1,13 @@
 <template>
     <div id="signs">
         <b>Adding</b>
+
         <br>
         <input type="text" id="box">
         <button @click="enter">Enter</button>
+        <br>
+        <input type="text" id="dSign">
+        <button @click="del">Delete</button>
         <br>
 
         <b>Signs</b>
@@ -38,6 +42,17 @@
                 const sign = box.value;
                 //передать на серв
                 axios.post('/info/addSign', null, {
+                    params: {
+                        sign
+                    }
+                });
+            },
+
+            del: function () {
+                const box = document.getElementById('dSign');
+                const sign = box.value;
+
+                axios.post('/info/deleteSign', null, {
                     params: {
                         sign
                     }
