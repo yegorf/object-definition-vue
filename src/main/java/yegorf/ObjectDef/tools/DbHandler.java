@@ -46,11 +46,43 @@ public class DbHandler {
         animalRepo.delete(animal);
     }
 
+    public void addSign(Sign sign) {
+        boolean check = true;
+        HashSet<Sign> signs = signRepo.findAll();
+        for(Sign s : signs) {
+            if(s.getSign().equals(sign.getSign())) {
+                check = false;
+            }
+        }
+        if(check) {
+            signRepo.save(sign);
+        }
+    }
+
     public void deleteSign(Sign sign) {
         HashSet<Matches> matches = matchesRepo.findAllBySign(sign);
         for(Matches m : matches) {
             matchesRepo.delete(m);
         }
         signRepo.delete(sign);
+    }
+
+    public void addAll(Animal animal, Sign sign1, Sign sign2) {
+        signRepo.save(sign1);
+        signRepo.save(sign2);
+        animalRepo.save(animal);
+        matchesRepo.save(new Matches(sign1, animal));
+        matchesRepo.save(new Matches(sign2, animal));
+    }
+
+    public void addOne(Animal animal, Sign sign, Integer id) {
+        signRepo.save(sign);
+        animalRepo.save(animal);
+        matchesRepo.save(new Matches(sign, animal));
+        for(Sign s : signRepo.findAll()) {
+            if(s.getId().equals(id)) {
+                matchesRepo.save(new Matches(s, animal));
+            }
+        }
     }
 }

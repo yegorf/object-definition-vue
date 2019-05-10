@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal v-if="showModal" @close="showModal = false">
+        <div v-if="showModal" @close="showModal = false">
             <transition name="modal">
                 <div class="modal-mask">
                     <div class="modal-wrapper">
@@ -37,8 +37,7 @@
                     </div>
                 </div>
             </transition>
-        </modal>
-
+        </div>
     </div>
 </template>
 
@@ -47,10 +46,12 @@
 
     export default {
         name: "ModalForm",
-        props: ["id1", "id2"],
+        props: ["id1", "id2", "sign1", "sign2"],
         data() {
             return {
-                showModal : true
+                showModal : true,
+                s1: null,
+                s2: null
             }
         },
         methods: {
@@ -59,32 +60,65 @@
                 const box = document.getElementById('iAnimal');
                 const animal = box.value;
 
-                axios.post('/info/addAnimal', null, {
-                    params: {
-                        animal,
-                        id1 : this.id1,
-                        id2 : this.id2
-                    }
-                }).then((res => {
-                    const result = res.data;
-                    alert(result);
-                }));
+                const sign1Box = document.getElementById("iSign1");
+                const sign2Box = document.getElementById("iSign2");
+
+                if(sign1Box.disabled && sign2Box.disabled) {
+                    axios.post('/info/addAnimal', null, {
+                        params: {
+                            animal,
+                            id1: this.id1,
+                            id2: this.id2
+                        }
+                    }).then((res => {
+                        const result = res.data;
+                        alert(result);
+                    }));
+                } else if(!sign1Box.disabled && !sign2Box.disabled) {
+                    this.s1 = sign1Box.value;
+                    this.s2 = sign2Box.value;
+
+                    axios.post('/result/addTwo', null, {
+                        params: {
+                            animal,
+                            sign1: this.s1,
+                            sign2: this.s2
+                        }
+                    }).then((res => {
+                        const result = res.data;
+                        alert(result);
+                    }));
+                } else {
+                    this.s1 = sign2Box.value;
+
+                    axios.post('/result/addOne', null, {
+                        params: {
+                            animal,
+                            sign: this.s1,
+                            id: this.id1
+                        }
+                    }).then((res => {
+                        const result = res.data;
+                        alert(result);
+                    }));
+                }
             },
             exit: function () {
                 this.showModal = false;
             }
         },
-        async created() {
-            const sign1Box = document.getElementById('iSign1');
-            const sign2Box = document.getElementById('iSign2');
+        async mounted() {
+            const sign1Box = document.getElementById("iSign1");
+            const sign2Box = document.getElementById("iSign2");
 
-            // if(this.id1 != null) {
-            //     sign1Box.value = this.id1;
-            // }
-            // if(this.id2 != null) {
-            //     sign2Box.value = this.id2;
-            // }
-            // sign1Box.value = 5;
+            if(this.id1 != null) {
+                sign1Box.value = this.sign1;
+                sign1Box.disabled = true;
+            }
+            if(this.id2 != null) {
+                sign2Box.value = this.sign2;
+                sign2Box.disabled = true;
+            }
         }
     }
 </script>

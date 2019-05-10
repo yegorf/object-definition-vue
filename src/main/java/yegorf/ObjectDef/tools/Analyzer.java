@@ -52,17 +52,6 @@ public class Analyzer {
         return "no";
     }
 
-//    public String analyzeResult(ArrayList<Integer> list) {
-////        String result = analyzeAnswers(list);
-////
-////        if(result != null) {
-////            //Если результат есть, выводим
-////        } else {
-////            //Если нет, просим ввести название зверя
-////        }
-//        return analyzeAnswers(list);
-//    }
-
     public void addTwo(String sign1, String sign2, String entity) {
         Sign signOne = new Sign(sign1);
         Sign signTwo = new Sign(sign2);

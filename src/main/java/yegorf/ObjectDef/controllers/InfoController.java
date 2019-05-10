@@ -18,6 +18,7 @@ public class InfoController {
     private final SignRepo signRepo;
     private final AnimalRepo animalRepo;
     private final MatchesRepo matchesRepo;
+    private DbHandler handler;
 
     @Autowired
     public InfoController(SignRepo signRepo, AnimalRepo animalRepo, MatchesRepo matchesRepo) {
@@ -53,7 +54,7 @@ public class InfoController {
         }
 
         if(success) {
-            DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+            handler = new DbHandler(signRepo, animalRepo, matchesRepo);
             handler.addAnimal(animal, id1, id2);
         }
 
@@ -63,7 +64,7 @@ public class InfoController {
 
     @PostMapping("/deleteAnimal")
     public void deleteAnimal(@RequestParam String animal) {
-        DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+        handler = new DbHandler(signRepo, animalRepo, matchesRepo);
         for(Animal a : animalRepo.findAll()) {
             if(a.getAnimal().equals(animal)) {
                 handler.deleteAnimal(a);
@@ -79,7 +80,8 @@ public class InfoController {
 
     @PostMapping("/addSign")
     public void addSign(@RequestParam String sign) {
-        signRepo.save(new Sign(sign));
+        handler = new DbHandler(signRepo, animalRepo, matchesRepo);
+        handler.addSign(new Sign(sign));
     }
 
     @PostMapping("/deleteSign")
