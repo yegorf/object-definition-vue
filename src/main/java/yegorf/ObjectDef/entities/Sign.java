@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 @Entity
 @NoArgsConstructor
+@ToString(exclude = "matches")
 @JsonIgnoreProperties("matches")
 public class Sign {
     @Id
@@ -27,10 +27,5 @@ public class Sign {
 
     public Sign(String sign) {
         this.sign = sign;
-    }
-
-    @Override
-    public String toString() {
-        return id + " ";
     }
 }

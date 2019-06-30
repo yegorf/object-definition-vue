@@ -1,8 +1,6 @@
 package yegorf.ObjectDef.tools;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import yegorf.ObjectDef.entities.Animal;
 import yegorf.ObjectDef.entities.Matches;
@@ -31,21 +29,17 @@ public class Analyzer {
     public String analyzeAnswers(ArrayList<Integer> list) {
         HashSet<Animal> animals = animalRepo.findAll();
 
-        for (Integer i: list){
-            System.out.println(i);
-        }
-
-        for(Animal animal : animals) {
+        for (Animal animal : animals) {
             HashSet<Matches> matches = matchesRepo.findAllByAnimal(animal);
             int count = 0;
-            for(Matches m : matches) {
-                for(Integer i : list) {
-                    if(i.equals(m.getSign().getId())) {
+            for (Matches m : matches) {
+                for (Integer i : list) {
+                    if (i.equals(m.getSign().getId())) {
                         count++;
                     }
                 }
             }
-            if(count >=2) {
+            if (count >= 2) {
                 return animal.getAnimal();
             }
         }
@@ -64,10 +58,9 @@ public class Analyzer {
         matchesRepo.save(new Matches(signTwo, animal));
     }
 
-    //For animal adding
     public boolean checkAnimalName(String name) {
-        for(Animal animal : animalRepo.findAll()) {
-            if(animal.getAnimal().equals(name)) {
+        for (Animal animal : animalRepo.findAll()) {
+            if (animal.getAnimal().equals(name)) {
                 return true;
             }
         }
@@ -76,16 +69,16 @@ public class Analyzer {
 
     public boolean checkUnique(Integer id1, Integer id2) {
         HashSet<Animal> animals = animalRepo.findAll();
-        for(Animal a : animals) {
+        for (Animal a : animals) {
             int count = 0;
             HashSet<Matches> matches = matchesRepo.findAllByAnimal(a);
-            for(Matches m : matches) {
-                if(m.getSign().getId().equals(id1)
-                || m.getSign().getId().equals(id2)) {
-                    count ++;
+            for (Matches m : matches) {
+                if (m.getSign().getId().equals(id1)
+                        || m.getSign().getId().equals(id2)) {
+                    count++;
                 }
             }
-            if(count == 2) {
+            if (count == 2) {
                 return true;
             }
         }

@@ -8,7 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Data
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @Entity
 @ToString

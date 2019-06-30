@@ -25,43 +25,48 @@ public class DbHandler {
         this.matchesRepo = matchesRepo;
     }
 
-    public void addAnimal(String name, Integer id1, Integer id2) {
+    public String addAnimal(String name, Integer id1, Integer id2) {
         Animal animal = new Animal(name);
         animalRepo.save(animal);
 
-        for(Sign s : signRepo.findAll()) {
-            if(s.getId().equals(id1)) {
+        for (Sign s : signRepo.findAll()) {
+            if (s.getId().equals(id1)) {
                 matchesRepo.save(new Matches(s, animal));
-            } else if(s.getId().equals(id2)) {
+            } else if (s.getId().equals(id2)) {
                 matchesRepo.save(new Matches(s, animal));
             }
         }
+
+        return "Успешно";
     }
 
     public void deleteAnimal(Animal animal) {
         HashSet<Matches> matches = matchesRepo.findAllByAnimal(animal);
-        for(Matches m : matches) {
+        for (Matches m : matches) {
             matchesRepo.delete(m);
         }
         animalRepo.delete(animal);
     }
 
-    public void addSign(Sign sign) {
+    public String addSign(Sign sign) {
         boolean check = true;
         HashSet<Sign> signs = signRepo.findAll();
-        for(Sign s : signs) {
-            if(s.getSign().equals(sign.getSign())) {
+        for (Sign s : signs) {
+            if (s.getSign().equals(sign.getSign())) {
                 check = false;
+                return "Такое уже есть";
             }
         }
-        if(check) {
+        if (check) {
             signRepo.save(sign);
+            return "Успешно";
         }
+        return "Такое уже есть";
     }
 
     public void deleteSign(Sign sign) {
         HashSet<Matches> matches = matchesRepo.findAllBySign(sign);
-        for(Matches m : matches) {
+        for (Matches m : matches) {
             matchesRepo.delete(m);
         }
         signRepo.delete(sign);
@@ -79,8 +84,8 @@ public class DbHandler {
         signRepo.save(sign);
         animalRepo.save(animal);
         matchesRepo.save(new Matches(sign, animal));
-        for(Sign s : signRepo.findAll()) {
-            if(s.getId().equals(id)) {
+        for (Sign s : signRepo.findAll()) {
+            if (s.getId().equals(id)) {
                 matchesRepo.save(new Matches(s, animal));
             }
         }

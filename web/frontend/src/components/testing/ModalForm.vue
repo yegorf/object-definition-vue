@@ -49,7 +49,7 @@
         props: ["id1", "id2", "sign1", "sign2"],
         data() {
             return {
-                showModal : true,
+                showModal: true,
                 s1: null,
                 s2: null
             }
@@ -63,7 +63,7 @@
                 const sign1Box = document.getElementById("iSign1");
                 const sign2Box = document.getElementById("iSign2");
 
-                if(sign1Box.disabled && sign2Box.disabled) {
+                if (sign1Box.disabled && sign2Box.disabled) {
                     axios.post('/info/addAnimal', null, {
                         params: {
                             animal,
@@ -74,7 +74,7 @@
                         const result = res.data;
                         alert(result);
                     }));
-                } else if(!sign1Box.disabled && !sign2Box.disabled) {
+                } else if (!sign1Box.disabled && !sign2Box.disabled) {
                     this.s1 = sign1Box.value;
                     this.s2 = sign2Box.value;
 
@@ -111,11 +111,11 @@
             const sign1Box = document.getElementById("iSign1");
             const sign2Box = document.getElementById("iSign2");
 
-            if(this.id1 != null) {
+            if (this.id1 != null) {
                 sign1Box.value = this.sign1;
                 sign1Box.disabled = true;
             }
-            if(this.id2 != null) {
+            if (this.id2 != null) {
                 sign2Box.value = this.sign2;
                 sign2Box.disabled = true;
             }

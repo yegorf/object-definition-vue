@@ -27,7 +27,6 @@ public class InfoController {
         this.matchesRepo = matchesRepo;
     }
 
-    //Animals
     @GetMapping("/animals")
     public HashSet<Animal> animals() {
         return animalRepo.findAll();
@@ -39,21 +38,20 @@ public class InfoController {
             @RequestParam Integer id1,
             @RequestParam Integer id2
     ) {
-        //Проверить нет ли совпадений, если нет - добавить
         System.out.println(animal + " " + id1 + " " + id2);
         Analyzer analyzer = new Analyzer(signRepo, animalRepo, matchesRepo);
 
-        String result = "Adding successful";
+        String result = "Добавлено успешно";
         boolean success = true;
-        if(analyzer.checkAnimalName(animal)) {
-            result = "Animal name already exists!";
+        if (analyzer.checkAnimalName(animal)) {
+            result = "Животное с таким именем уже есть!";
             success = false;
-        } else if(analyzer.checkUnique(id1, id2)) {
-            result = "Animal with same signs already exists!";
+        } else if (analyzer.checkUnique(id1, id2)) {
+            result = "Животное с такими признаками уже есть!";
             success = false;
         }
 
-        if(success) {
+        if (success) {
             handler = new DbHandler(signRepo, animalRepo, matchesRepo);
             handler.addAnimal(animal, id1, id2);
         }
@@ -65,30 +63,29 @@ public class InfoController {
     @PostMapping("/deleteAnimal")
     public void deleteAnimal(@RequestParam String animal) {
         handler = new DbHandler(signRepo, animalRepo, matchesRepo);
-        for(Animal a : animalRepo.findAll()) {
-            if(a.getAnimal().equals(animal)) {
+        for (Animal a : animalRepo.findAll()) {
+            if (a.getAnimal().equals(animal)) {
                 handler.deleteAnimal(a);
             }
         }
     }
 
-    //Signs
     @GetMapping("/signs")
     public HashSet<Sign> signs() {
         return signRepo.findAll();
     }
 
     @PostMapping("/addSign")
-    public void addSign(@RequestParam String sign) {
+    public String addSign(@RequestParam String sign) {
         handler = new DbHandler(signRepo, animalRepo, matchesRepo);
-        handler.addSign(new Sign(sign));
+        return handler.addSign(new Sign(sign));
     }
 
     @PostMapping("/deleteSign")
     public void deleteSign(@RequestParam String sign) {
         DbHandler handler = new DbHandler(signRepo, animalRepo, matchesRepo);
-        for(Sign s : signRepo.findAll()) {
-            if(s.getSign().equals(sign)) {
+        for (Sign s : signRepo.findAll()) {
+            if (s.getSign().equals(sign)) {
                 handler.deleteSign(s);
             }
         }

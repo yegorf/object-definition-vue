@@ -10,9 +10,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 @Entity
 @NoArgsConstructor
+@ToString(exclude = "matches")
 @JsonIgnoreProperties("matches")
 public class Animal {
     @Id
@@ -26,10 +27,5 @@ public class Animal {
 
     public Animal(String animal) {
         this.animal = animal;
-    }
-
-    @Override
-    public String toString() {
-        return id + " ";
     }
 }

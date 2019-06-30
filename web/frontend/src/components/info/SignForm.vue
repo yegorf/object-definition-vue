@@ -12,7 +12,7 @@
 
         <b>Signs</b>
         <br>
-        <SignRow v-for="sign in signs" :id="sign.id" :sign="sign.sign" />
+        <SignRow v-for="sign in signs" :id="sign.id" :sign="sign.sign"/>
     </div>
 </template>
 
@@ -37,15 +37,19 @@
         },
 
         methods: {
-            enter: function() {
+            enter: function () {
                 const box = document.getElementById('box');
                 const sign = box.value;
-                //передать на серв
+
+
                 axios.post('/info/addSign', null, {
                     params: {
                         sign
                     }
-                });
+                }).then((res => {
+                    const result = res.data;
+                    alert(result);
+                }));
             },
 
             del: function () {
@@ -63,7 +67,7 @@
 </script>
 
 <style scoped>
-#signs {
-    background: beige;
-}
+    #signs {
+        background: beige;
+    }
 </style>

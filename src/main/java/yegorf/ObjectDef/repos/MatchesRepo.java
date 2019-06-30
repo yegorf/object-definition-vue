@@ -9,5 +9,6 @@ import java.util.HashSet;
 
 public interface MatchesRepo extends CrudRepository<Matches, Integer> {
     HashSet<Matches> findAllByAnimal(Animal animal);
+
     HashSet<Matches> findAllBySign(Sign sign);
 }

@@ -17,7 +17,7 @@
 
         components: {TestRow, ModalForm},
 
-        data: function() {
+        data: function () {
             return {
                 component: null,
                 id1: null,
@@ -30,7 +30,7 @@
         props: ['signs'],
 
         methods: {
-            go: function () {
+            go() {
                 let sign = '';
                 let count = 0;
 
@@ -41,10 +41,10 @@
 
                 this.signs.forEach(function (s) {
                     const el = document.getElementById(s.id);
-                    if(el.checked) {
+                    if (el.checked) {
                         sign = sign + s.id + ' ';
 
-                        if(count === 0) {
+                        if (count === 0) {
                             idOne = s.id;
                             signOne = s.sign;
                         } else {
@@ -63,11 +63,9 @@
 
                 switch (count) {
                     case 0:
-                        //Ввести 2 признака и название
                         this.component = 'ModalForm';
                         break;
                     case 1:
-                        //Ввести 1 признак и название
                         this.component = 'ModalForm';
                         break;
                     case 2:
@@ -77,12 +75,15 @@
                             }
                         }).then((res => {
                             const animal = res.data;
-                            if(animal !== 'no') {
+                            if (animal !== 'no') {
                                 alert(animal)
                             } else {
                                 this.component = 'ModalForm';
                             }
                         }));
+                        break;
+                    case 3:
+                        alert("Можно выбрать только 2 признака!")
                         break;
                 }
             }
